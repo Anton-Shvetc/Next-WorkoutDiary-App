@@ -1,0 +1,36 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+ background: linear-gradient(180deg, rgba(251,89,63,1) 0%, rgba(252,148,70,1) 100%);
+  color: #fff;
+  font-size: 20px;
+}
+
+#__next {
+  min-height: 100vh;
+  display: grid;
+  grid-auto-rows: auto 1fr auto;
+}
+
+main {
+  padding: 20px;
+}
+
+header,
+footer {
+  min-height: 80px;
+}
+
+header {
+
+background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 76%, rgba(252,176,69,1) 100%);
+
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
