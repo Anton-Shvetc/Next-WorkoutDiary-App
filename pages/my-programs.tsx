@@ -1,10 +1,11 @@
-function MyPrograms() {
-	return ( 
+import Title from "../components/Title";
 
-		<div>
-			<h1>My programs</h1>
-		</div>
-	 );
+function MyPrograms() {
+	return (
+    <div>
+      <Title title="My programs" />
+    </div>
+  );
 }
 
 export default MyPrograms;
