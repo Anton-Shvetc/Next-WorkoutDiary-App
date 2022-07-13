@@ -6,6 +6,7 @@ import Dropdown from "../components/DropDown";
 
 const testArray = [
   {
+    id: 11, 
     title: "Грудь",
     data: [
       {
@@ -23,7 +24,26 @@ const testArray = [
     ],
   },
   {
+    id: 12, 
     title: "Спина",
+    data: [
+      {
+        id: 1,
+        value: "Становая тяга",
+      },
+      {
+        id: 2,
+        value: "Тяга к поясу ",
+      },
+      {
+        id: 3,
+        value: "Подтягивания",
+      },
+    ],
+  },
+  {
+    id: 14, 
+    title: "Ноги",
     data: [
       {
         id: 1,
@@ -49,12 +69,15 @@ function Catalog() {
       <div className="container">
         {testArray.map((element, index) => (
           <Dropdown
-            key={index}
+            key={element.id}
             title={element.title}
             items={element.data}
             multiSelect
           />
+          
         ))}
+
+          
       </div>
     </div>
   );

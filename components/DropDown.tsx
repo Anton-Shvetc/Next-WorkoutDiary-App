@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import onClickOutside from "react-onclickoutside";
+import styles from "../styles/DropDown.module.scss";
 
 function Dropdown({ title, items, multiSelect = false }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
-  const toggle = () => setOpen(!open);
-  Dropdown.handleClickOutside = () => setOpen(false);
+
 
   function handleOnClick(item) {
+    console.log("selected");
     if (!selection.some((current) => current.id === item.id)) {
       if (!multiSelect) {
         setSelection([item]);
@@ -31,25 +31,27 @@ function Dropdown({ title, items, multiSelect = false }) {
   }
 
   return (
-    <div className="dd-wrapper">
+    <div className={styles.ddwrapper}>
       <div
         tabIndex={0}
-        className="dd-header"
+        className={styles.ddheader}
         role="button"
-        onKeyPress={() => toggle(!open)}
-        onClick={() => toggle(!open)}
+        onClick={() => {
+          console.log(open);
+          setOpen(!open);
+        }}
       >
-        <div className="dd-header__title">
-          <p className="dd-header__title--bold">{title}</p>
+        <div className={styles.ddheader__title}>
+          <p className={styles.ddheader__titlebold}>{title}</p>
         </div>
-        <div className="dd-header__action">
+        <div className={styles.ddheader__action}>
           <p>{open ? "Close" : "Open"}</p>
         </div>
       </div>
       {open && (
-        <ul className="dd-list">
+        <ul className={styles.ddlist}>
           {items.map((item) => (
-            <li className="dd-list-item" key={item.id}>
+            <li className={styles.ddlistitem} key={item.id}>
               <button type="button" onClick={() => handleOnClick(item)}>
                 <span>{item.value}</span>
                 <span>{isItemInSelection(item) && "Selected"}</span>
@@ -62,8 +64,4 @@ function Dropdown({ title, items, multiSelect = false }) {
   );
 }
 
-const clickOutsideConfig = {
-  handleClickOutside: () => Dropdown.handleClickOutside,
-};
-
-export default onClickOutside(Dropdown, clickOutsideConfig);
+export default Dropdown;
