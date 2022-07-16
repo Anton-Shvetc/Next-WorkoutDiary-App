@@ -1,6 +1,4 @@
 import Link from "../node_modules/next/link";
-import Image from "../node_modules/next/image";
-
 import styles from "../styles/Navbar.module.scss";
 import { useRouter } from "../node_modules/next/router";
 
@@ -11,7 +9,7 @@ const navigation = [
   // { id: 4, title: "My Programs", path: "/my-programs" },
   // { id: 5, title: "Statistics", path: "/statistics" },
   // { id: 6, title: "LogIn", path: "/login" },
-  { id: 7, title: "Diary", path: "/diary" },
+  { id: 7, title: "Diary", path: "/diaryPage" },
 ];
 
 function Navbar() {
