@@ -1,6 +1,10 @@
-import Link from "../node_modules/next/link";
+import React from "react";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import Link from "next/link";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/router";
 import styles from "../styles/Navbar.module.scss";
-import { useRouter } from "../node_modules/next/router";
+
 
 const navigation = [
   { id: 1, title: "Home", path: "/" },
@@ -9,10 +13,14 @@ const navigation = [
   // { id: 4, title: "My Programs", path: "/my-programs" },
   // { id: 5, title: "Statistics", path: "/statistics" },
   // { id: 6, title: "LogIn", path: "/login" },
-  { id: 7, title: "Diary", path: "/diaryPage" },
+  // { id: 7, title: "SignUp", path: "/signup" },
+  { id: 8, title: "Diary", path: "/diaryPage" },
 ];
 
-function Navbar() {
+
+const NavbarComp = () => {
+  const { user, logout } = useAuth();
+  const router = useRouter();
   const { pathname } = useRouter();
   return (
     <nav className={styles.nav}>
@@ -23,8 +31,62 @@ function Navbar() {
           </Link>
         ))}
       </div>
+      {user ? (
+        <div>
+          <Nav.Link
+            onClick={() => {
+              logout();
+              router.push("/login");
+            }}
+          >
+            Logout
+          </Nav.Link>
+        </div>
+      ) : (
+        <>
+          <Link href="/signup" passHref>
+            <Nav.Link>Signup</Nav.Link>
+          </Link>
+          <Link href="/login" passHref>
+            <Nav.Link>Login</Nav.Link>
+          </Link>
+        </>
+      )}
     </nav>
+    // <Navbar bg="light" expand="lg">
+    //   <Container>
+    //     <Link href="/" passHref>
+    //       <Navbar.Brand>NextJS Firebase Auth</Navbar.Brand>
+    //     </Link>
+    //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    //     <Navbar.Collapse id="basic-navbar-nav">
+    // <Nav className="me-auto">
+    //   {user ? (
+    //     <div>
+    //       <Nav.Link
+    //         onClick={() => {
+    //           logout();
+    //           router.push("/login");
+    //         }}
+    //       >
+    //         Logout
+    //       </Nav.Link>
+    //     </div>
+    //   ) : (
+    //     <>
+    //       <Link href="/signup" passHref>
+    //         <Nav.Link>Signup</Nav.Link>
+    //       </Link>
+    //       <Link href="/login" passHref>
+    //         <Nav.Link>Login</Nav.Link>
+    //       </Link>
+    //     </>
+    //   )}
+    // </Nav>
+    //     </Navbar.Collapse>
+    //   </Container>
+    // </Navbar>
   );
-}
+};
 
-export default Navbar;
+export default NavbarComp;
