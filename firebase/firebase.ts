@@ -4,7 +4,8 @@ import "firebase/auth";
 import "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
+import { getFirestore } from "firebase/firestore";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 // const clientCredentials = {
 //   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -24,7 +25,7 @@ const firebaseConfig = {
   appId: "1:843015520790:web:12ad3151871a81f3b3eb37",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 // app()
 
 // export default !firebase.apps.length
@@ -33,6 +34,8 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 
+// export const db = getDatabase(app);
+ export const db = getFirestore(app); // For Using Database
 // getApps().length === 0 ? initializeApp(clientCredentials) : getApp();
 
 // if (!firebase.apps.length) {

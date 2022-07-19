@@ -5,7 +5,6 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import styles from "../styles/Navbar.module.scss";
 
-
 const navigation = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Catalog", path: "/catalog" },
@@ -16,7 +15,6 @@ const navigation = [
   // { id: 7, title: "SignUp", path: "/signup" },
   { id: 8, title: "Diary", path: "/diaryPage" },
 ];
-
 
 const NavbarComp = () => {
   const { user, logout } = useAuth();
@@ -32,25 +30,28 @@ const NavbarComp = () => {
         ))}
       </div>
       {user ? (
-        <div>
-          <Nav.Link
-            onClick={() => {
-              logout();
-              router.push("/login");
-            }}
-          >
-            Logout
-          </Nav.Link>
+        <div
+          onClick={() => {
+            logout();
+            router.push("/login");
+          }}
+        >
+          <Link href="/login">
+            {/* <Nav.Link>Login</Nav.Link> */}
+            {"LogOut"}
+          </Link>
         </div>
       ) : (
-        <>
+        <div>
           <Link href="/signup" passHref>
-            <Nav.Link>Signup</Nav.Link>
+            {/* <Nav.Link>Signup</Nav.Link> */}
+            {"Signup"}
           </Link>
           <Link href="/login" passHref>
-            <Nav.Link>Login</Nav.Link>
+            {/* <Nav.Link>Login</Nav.Link> */}
+            {"Login"}
           </Link>
-        </>
+        </div>
       )}
     </nav>
     // <Navbar bg="light" expand="lg">

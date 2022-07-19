@@ -12,14 +12,16 @@ const Login = () => {
   });
 
   const handleLogin = async (e: any) => {
+
     e.preventDefault();
 
-    console.log(user);
+
     try {
       await login(data.email, data.password);
       router.push("/diaryPage");
     } catch (err) {
       console.log(err);
+      alert("Неверные данные или пользователь не зареган")
     }
   };
 
