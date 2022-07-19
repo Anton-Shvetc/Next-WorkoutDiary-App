@@ -30,16 +30,21 @@ const NavbarComp = () => {
         ))}
       </div>
       {user ? (
-        <div
-          onClick={() => {
-            logout();
-            router.push("/login");
-          }}
-        >
-          <Link href="/login">
-            {/* <Nav.Link>Login</Nav.Link> */}
-            {"LogOut"}
-          </Link>
+        <div>
+          <div>
+            <Link href="#">{user.email}</Link>
+          </div>
+          <div
+            onClick={() => {
+              logout();
+              router.push("/login");
+            }}
+          >
+            <Link href="/login">
+              {/* <Nav.Link>Login</Nav.Link> */}
+              {"LogOut"}
+            </Link>
+          </div>
         </div>
       ) : (
         <div>
