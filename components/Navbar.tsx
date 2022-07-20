@@ -10,7 +10,7 @@ const navigation = [
   { id: 2, title: "Catalog", path: "/catalog" },
   { id: 3, title: "History", path: "/history" },
   // { id: 4, title: "My Programs", path: "/my-programs" },
-  // { id: 5, title: "Statistics", path: "/statistics" },
+  { id: 5, title: "Statistics", path: "/statistics" },
   // { id: 6, title: "LogIn", path: "/login" },
   // { id: 7, title: "SignUp", path: "/signup" },
   { id: 8, title: "Diary", path: "/diaryPage" },

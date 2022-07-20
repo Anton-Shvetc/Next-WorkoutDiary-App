@@ -84,8 +84,6 @@ querySnapshot.forEach((doc) => {
 //   },
 // ];
 
-const citiesRef = collection(db, "users");
-console.log(citiesRef)
 
 function DiaryPage() {
 

@@ -3,12 +3,11 @@ import { Button, Form } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { app } from "../firebase/firebase";
 
-
 // Вынести отдельно
-const db = getFirestore(app); 
+const db = getFirestore(app);
 
 const Signup = () => {
   const { user, signup } = useAuth();
@@ -16,30 +15,34 @@ const Signup = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
+    name: "",
   });
- const router = useRouter();
+
+  if (user) {
+    CreateUser(data.email, data.name, user.uid);
+  }
+
+  const router = useRouter();
   const handleSignup = async (e: any) => {
     e.preventDefault();
 
     try {
-      await signup(data.email, data.password);
-      // db.collection("users").doc(userUid).set({
-      //   email: htmlEmail,
-      //   emailVertified: false,
-      //   name: htmlUser,
-      //   online: false,
-      //   onlock: false,
-      //   password: htmlPass,
-      // });
-       router.push("/diaryPage");
-
+      await signup(data.email, data.password, data.name);
+      // CreateUser(user.email, user.name, user.uid);
+      router.push("/diaryPage");
     } catch (err) {
       console.log(err);
-      alert('Пользователь уже сущетствует')
+      alert("Пользователь уже сущетствует");
     }
 
     console.log(data);
   };
+  async function CreateUser(email, name, uid) {
+    await setDoc(doc(db, "users", uid), {
+      email: email,
+      name: name,
+    });
+  }
 
   return (
     <div
@@ -82,6 +85,21 @@ const Signup = () => {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Name"
+            required
+            onChange={(e: any) =>
+              setData({
+                ...data,
+                name: e.target.value,
+              })
+            }
+            value={data.name}
+          />
+        </Form.Group>
         <Button variant="primary" type="submit">
           Signup
         </Button>
