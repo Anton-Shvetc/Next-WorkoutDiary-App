@@ -30,14 +30,6 @@ const Signup = () => {
 
     try {
       await signup(data.email, data.password);
-      // db.collection("users").doc(userUid).set({
-      //   email: htmlEmail,
-      //   emailVertified: false,
-      //   name: htmlUser,
-      //   online: false,
-      //   onlock: false,
-      //   password: htmlPass,
-      // });
        router.push("/diaryPage");
 
     } catch (err) {

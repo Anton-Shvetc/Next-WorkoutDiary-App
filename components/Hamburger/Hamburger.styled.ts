@@ -22,7 +22,7 @@ export const StyledHamburger = styled.button<{ open: boolean }>`
 
   @media (max-width: 600px) {
     right: ${({ open }) => (open ? "initial" : "3vw")};
-    left: ${({ open }) => (open ? "2vw" : "initial")};
+    right: ${({ open }) => (open ? "35vw" : "3vh")};
   }
 
   div {
