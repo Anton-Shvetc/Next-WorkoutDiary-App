@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { app } from "../firebase/firebase";
 
 
@@ -16,9 +16,16 @@ const Signup = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
+    name: ""
   });
- const router = useRouter();
-  const handleSignup = async (e: any) => {
+
+
+  if (user) {
+    CreateUser(data.email, data.name, user.uid);
+  }
+
+  const router = useRouter();
+ const handleSignup = async (e: any) => {
     e.preventDefault();
 
     try {
@@ -40,6 +47,14 @@ const Signup = () => {
 
     console.log(data);
   };
+
+    async function CreateUser(email, name, uid) {
+      await setDoc(doc(db, "users", uid), {
+        email: email,
+        name: name,
+      });
+    }
+
 
   return (
     <div
@@ -79,6 +94,21 @@ const Signup = () => {
               })
             }
             value={data.password}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Name"
+            required
+            onChange={(e: any) =>
+              setData({
+                ...data,
+                name: e.target.value,
+              })
+            }
+            value={data.name}
           />
         </Form.Group>
 
