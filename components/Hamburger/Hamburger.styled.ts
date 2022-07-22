@@ -4,7 +4,12 @@ import { colors } from "../../styles/global";
 
 export const StyledHamburger = styled.button<{ open: boolean }>`
   position: fixed;
-  right: ${({ open }) => (open ? "29vw" : "3vw")};
+  right: 35vw;
+
+  transition: transform 0.3s ease-in-out;
+
+  transform: ${({ open }) =>
+    open ? "translateX(-3vw)" : "translateX( 29vw)"};
   top: 3vh;
   width: 2rem;
   height: 2rem;
@@ -19,11 +24,6 @@ export const StyledHamburger = styled.button<{ open: boolean }>`
   cursor: pointer;
   outline: none;
   z-index: 1;
-
-  @media (max-width: 600px) {
-    right: ${({ open }) => (open ? "initial" : "3vw")};
-    right: ${({ open }) => (open ? "35vw" : "3vh")};
-  }
 
   div {
     position: relative;
